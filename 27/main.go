@@ -15,7 +15,7 @@ func main() {
 	str = strings.TrimSpace(str)
 	lines := strings.Fields(str)
 
-	values := make([]int,len(lines))
+	values := make([]int,len(lines)) //chatic em nayel,vonc stringy darcnem slice
 	for i,line := range lines{
 		values[i],_  = strconv.Atoi(line)
 		fmt.Println(values[i]) }
