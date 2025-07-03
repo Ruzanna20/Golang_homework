@@ -18,22 +18,22 @@ func main() {
 		val,_ := strconv.Atoi(line)
 		if val >= 100 && val <= 999{
 			fmt.Println(val)
+			
+			m := val % 10
+			t1 := (val / 10) % 10
+			h := val / 100 
+			var t bool = false
+			if m == t1 || m ==h || t1 == h {
+				t = true
+			}
+			if t == true {
+				fmt.Println("True")
+			} else {
+				fmt.Println("False")
+			}
 		} else{
-			fmt.Println("Eranish tiv che:")
+			fmt.Println("Eranish tiv che:"val)
 		}
-
-	m := val % 10
-	t1 := (val / 10) % 10
-	h := val / 100 
-	var t bool = false
-	if m == t1 || m ==h || t1 == h {
-		t = true
-	}
-	if t == true {
-		fmt.Println("True")
-	} else {
-		fmt.Println("False")
-	}
 }
 }
 
