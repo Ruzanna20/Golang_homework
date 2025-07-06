@@ -22,7 +22,7 @@ func InputArray(N int) []int {
 		CheckError(err)
 		values = append(values, val)
 	}
-	if len(values) != N {
+	if len(values) > N {
 		panic("Overflow")
 	} 
 	return values

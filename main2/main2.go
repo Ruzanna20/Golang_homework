@@ -18,7 +18,7 @@ func InputArray(n int) []string {
 	for _,symbol := range str {
 		symbols = append(symbols,string(symbol))
 	}
-	if len(symbols) != n {
+	if len(symbols) > n || len(symbols) < n {
 		panic("Overflow")
 	} 
 	return symbols

@@ -26,7 +26,7 @@ func main() {
 			if m == t1 || m ==h || t1 == h {
 				t = true
 			}
-			if t == true {
+			if t {
 				fmt.Println("True")
 			} else {
 				fmt.Println("False")
