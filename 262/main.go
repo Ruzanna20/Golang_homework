@@ -18,11 +18,11 @@ func mijqar(arr []int) int {
 }
 
 func main() {
-	A := main1.InputArray(5)
-	B := main1.InputArray(10)
+	X := main1.InputArray(5)
+	Y := main1.InputArray(10)
 
-	mijqarA := mijqar(A)
-	mijqarB := mijqar(B)
+	mijqarA := mijqar(X)
+	mijqarB := mijqar(Y)
 	sum := mijqarA + mijqarB
 	fmt.Println("Sum:",sum)
 }
