@@ -32,7 +32,7 @@ func main() {
 				fmt.Println("False")
 			}
 		} else{
-			fmt.Println("Eranish tiv che:"val)
+			fmt.Println("Eranish tiv che:",val)
 		}
 }
 }
