@@ -25,7 +25,7 @@ func (sll *SLL) insertAtBeginInLL(data int) {
 }
 
 func (sll *SLL) insertAtEndInLL(data int) {
-	newnode := NewNode(data,nil)
+	newnode := NewNode(data, nil)
 
 	if sll.head == nil {
 		sll.head = newnode
@@ -43,7 +43,7 @@ func (sll *SLL) deleteFromLL(data int) {
 	}
 
 	if sll.head.data == data {
-		sll.head=sll.head.next
+		sll.head = sll.head.next
 	}
 
 	current := sll.head
@@ -54,7 +54,7 @@ func (sll *SLL) deleteFromLL(data int) {
 		}
 		current = current.next
 	}
-	
+
 }
 
 func (sll *SLL) print() {
