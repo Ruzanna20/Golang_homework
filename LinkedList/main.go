@@ -59,6 +59,60 @@ func (sll *SLL) deleteFromSLL(data int) {
 
 }
 
+func (sll *SLL) countOfNodeInSLL() int {
+	var count int
+
+	current := sll.head
+	for current != nil {
+		count++
+		current = current.next
+	}
+	return count
+}
+
+func (sll *SLL) checkNegativeDataInSLL() bool {
+	var negativedata bool
+
+	current := sll.head
+	for current != nil {
+		if current.data < 0 {
+			negativedata = true
+			break
+		}
+		current = current.next
+	}
+	return negativedata
+}
+
+func (sll *SLL) sumOfAllDataInSLL() int {
+	var sum int
+
+	current := sll.head
+	for current != nil {
+		sum += current.data
+		current = current.next
+	}
+	return sum
+}
+
+func (sll *SLL) sumAtOddIndexesInSLL() int {
+	var sum int
+	var arrofodd []int
+
+	current := sll.head
+	for current != nil {
+		arrofodd = append(arrofodd, current.data)
+		current = current.next
+	}
+
+	for i, val := range arrofodd {
+		if i%2 == 1 {
+			sum += val
+		}
+	}
+	return sum
+}
+
 func (sll *SLL) print() {
 	current := sll.head
 	for current != nil {
@@ -81,4 +135,16 @@ func main() {
 
 	ll.deleteFromSLL(55)
 	ll.print()
+
+	count := ll.countOfNodeInSLL()
+	fmt.Println("Count of node in the SLL:", count)
+
+	negativedata := ll.checkNegativeDataInSLL()
+	fmt.Println("SLL has the negative data:", negativedata)
+
+	sumofalldata := ll.sumOfAllDataInSLL()
+	fmt.Println("Sum of the all data in the SLL:", sumofalldata)
+
+	sumofoddindexes := ll.sumAtOddIndexesInSLL()
+	fmt.Println("Sum of odd index nodes in SLL:", sumofoddindexes)
 }
