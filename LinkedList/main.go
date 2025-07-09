@@ -11,24 +11,24 @@ type SLL struct {
 	head *Node
 }
 
-func NewNode(data int, next *Node) *Node {
+func NewNode(data int) *Node {
 	return &Node{
 		data: data,
-		next: next,
 	}
 }
 
-func (sll *SLL) insertAtBeginInLL(data int) {
-	newnode := NewNode(data, nil)
+func (sll *SLL) insertAtBeginInSLL(data int) {
+	newnode := NewNode(data)
 	newnode.next = sll.head
 	sll.head = newnode
 }
 
-func (sll *SLL) insertAtEndInLL(data int) {
-	newnode := NewNode(data, nil)
+func (sll *SLL) insertAtEndInSLL(data int) {
+	newnode := NewNode(data)
 
 	if sll.head == nil {
 		sll.head = newnode
+		return
 	}
 	current := sll.head
 	for current.next != nil {
@@ -37,13 +37,15 @@ func (sll *SLL) insertAtEndInLL(data int) {
 	current.next = newnode
 }
 
-func (sll *SLL) deleteFromLL(data int) {
+func (sll *SLL) deleteFromSLL(data int) {
 	if sll.head == nil {
 		fmt.Println("Datark LL:")
+		return
 	}
 
 	if sll.head.data == data {
 		sll.head = sll.head.next
+		return
 	}
 
 	current := sll.head
@@ -68,15 +70,15 @@ func (sll *SLL) print() {
 
 func main() {
 	ll := SLL{}
-	ll.insertAtBeginInLL(10)
-	ll.insertAtBeginInLL(15)
-	ll.insertAtBeginInLL(20)
+	ll.insertAtBeginInSLL(10)
+	ll.insertAtBeginInSLL(15)
+	ll.insertAtBeginInSLL(20)
 
-	ll.insertAtEndInLL(16)
-	ll.insertAtEndInLL(15)
-	ll.insertAtEndInLL(10)
+	ll.insertAtEndInSLL(16)
+	ll.insertAtEndInSLL(15)
+	ll.insertAtEndInSLL(10)
 	ll.print()
 
-	ll.deleteFromLL(55)
+	ll.deleteFromSLL(55)
 	ll.print()
 }
