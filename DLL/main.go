@@ -10,11 +10,9 @@ type Node struct {
 	prev *Node
 }
 
-func NewNode(data int, next *Node, prev *Node) *Node {
+func NewNode(data int) *Node {
 	return &Node{
 		data: data,
-		next: next,
-		prev: prev,
 	}
 }
 
@@ -24,7 +22,7 @@ type DLL struct {
 }
 
 func (dll *DLL) insertAtBeginInDLL(data int) {
-	newnode := NewNode(data, nil, nil)
+	newnode := NewNode(data)
 
 	if dll.head != nil {
 		dll.head.prev = newnode
@@ -37,11 +35,12 @@ func (dll *DLL) insertAtBeginInDLL(data int) {
 }
 
 func (dll *DLL) insertAtEndInDLL(data int) {
-	newnode := NewNode(data, nil, nil)
+	newnode := NewNode(data)
 
 	if dll.head == nil && dll.tail == nil {
 		dll.head = newnode
 		dll.tail = newnode
+		return
 	}
 
 	current := dll.head
@@ -50,23 +49,36 @@ func (dll *DLL) insertAtEndInDLL(data int) {
 	}
 	current.next = newnode
 	newnode.prev = current
+	dll.tail = newnode
 }
 
 func (dll *DLL) deleteFromDLL(data int) {
 	if dll.head == nil {
 		fmt.Println("Datark DLL:")
+		return
 	}
 
 	if dll.head.data == data && dll.head.next != nil {
 		dll.head = dll.head.next
 		dll.head.prev = nil
-	} 
+		return
+	}
+
+	if dll.head.data == data && dll.head.next == nil {
+		dll.head = nil
+		dll.tail = nil
+		return 
+	}
 
 	current := dll.head
 	for current.next != nil {
-		if current.next.data == data {
+		if current.next.data == data && current.next.next != nil {
 			current.next = current.next.next
 			current.next.prev = current
+		} else if current.next.data == data && current.next.next == nil {
+			current.next = nil 
+			dll.tail = current
+			return
 		}
 		current = current.next
 	}
@@ -97,6 +109,6 @@ func main() {
 
 	dll.deleteFromDLL(10)
 	dll.print()
-	dll.deleteFromDLL(30)
+	dll.deleteFromDLL(70)
 	dll.print()
 }
