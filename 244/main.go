@@ -1,6 +1,6 @@
 package main
 
-import ("inputproject/input"
+import ("myproject/input"
 "fmt")
 
 func main() {

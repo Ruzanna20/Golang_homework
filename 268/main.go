@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"inputproject/main1"
+	"myproject/main1"
 )
 
 func CountNum(arr []int,k int) int {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"inputproject/main2"
+	"myproject/main2"
 )
 
 func NewArray(arr []string) []string {

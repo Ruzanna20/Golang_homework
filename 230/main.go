@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"inputproject/input"
+	"myproject/input"
 	"math"
 )
 
