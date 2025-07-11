@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	interfaces "inputproject/Interfaces"
+	"inputproject/Interfaces"
 )
 
 type Node struct {
