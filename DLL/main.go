@@ -21,7 +21,7 @@ type DLL struct {
 	tail *Node
 }
 
-func (dll *DLL) insertAtBeginInDLL(data int) {
+func (dll *DLL) insertAtBegin(data int) {
 	newnode := NewNode(data)
 
 	if dll.head != nil {
@@ -34,7 +34,7 @@ func (dll *DLL) insertAtBeginInDLL(data int) {
 	}
 }
 
-func (dll *DLL) insertAtEndInDLL(data int) {
+func (dll *DLL) insertAtEnd(data int) {
 	newnode := NewNode(data)
 
 	if dll.head == nil && dll.tail == nil {
@@ -52,39 +52,40 @@ func (dll *DLL) insertAtEndInDLL(data int) {
 	dll.tail = newnode
 }
 
-func (dll *DLL) deleteFromDLL(data int) {
+func (dll *DLL) delete(data int) {
 	if dll.head == nil {
 		fmt.Println("Datark DLL:")
 		return
 	}
 
-	if dll.head.data == data && dll.head.next != nil {
-		dll.head = dll.head.next
-		dll.head.prev = nil
-		return
-	}
-
-	if dll.head.data == data && dll.head.next == nil {
-		dll.head = nil
-		dll.tail = nil
+	if dll.head.data == data {
+		if dll.head.next != nil {
+			dll.head = dll.head.next
+			dll.head.prev = nil
+		} else {
+			dll.head = nil
+			dll.tail = nil
+		}
 		return
 	}
 
 	current := dll.head
 	for current.next != nil {
-		if current.next.data == data && current.next.next != nil {
-			current.next = current.next.next
-			current.next.prev = current
-		} else if current.next.data == data && current.next.next == nil {
-			current.next = nil
-			dll.tail = current
+		if current.next.data == data {
+			if current.next.next != nil {
+				current.next = current.next.next
+				current.next.prev = current
+			} else {
+				current.next = nil
+				dll.tail = current
+			}
 			return
 		}
 		current = current.next
 	}
 }
 
-func (dll *DLL) countOfNodeInDLL() int {
+func (dll *DLL) countOfNode() int {
 	var count int
 
 	current := dll.head
@@ -95,7 +96,7 @@ func (dll *DLL) countOfNodeInDLL() int {
 	return count
 }
 
-func (dll *DLL) checkNegativeDataInDLL() bool {
+func (dll *DLL) checkNegativeData() bool {
 	var negativedata bool
 
 	current := dll.head
@@ -109,7 +110,7 @@ func (dll *DLL) checkNegativeDataInDLL() bool {
 	return negativedata
 }
 
-func (dll *DLL) sumOfAllDataInDLL() int {
+func (dll *DLL) sumOfAllData() int {
 	var sum int
 
 	current := dll.head
@@ -120,20 +121,13 @@ func (dll *DLL) sumOfAllDataInDLL() int {
 	return sum
 }
 
-func (dll *DLL) sumAtOddIndexesInDLL() int {
+func (dll *DLL) sumAtOddIndexes() int {
 	var sum int
-	var arrofodd []int
 
 	current := dll.head
-	for current != nil {
-		arrofodd = append(arrofodd, current.data)
-		current = current.next
-	}
-
-	for i, val := range arrofodd {
-		if i%2 == 1 {
-			sum += val
-		}
+	for current != nil && current.next != nil {
+		sum += current.next.data
+		current = current.next.next
 	}
 	return sum
 }
@@ -151,30 +145,30 @@ func (dll *DLL) print() {
 func main() {
 	dll := DLL{}
 
-	dll.insertAtBeginInDLL(10)
-	dll.insertAtBeginInDLL(20)
-	dll.insertAtBeginInDLL(30)
+	dll.insertAtBegin(10)
+	dll.insertAtBegin(20)
+	dll.insertAtBegin(30)
 
-	dll.insertAtEndInDLL(50)
-	dll.insertAtEndInDLL(60)
-	dll.insertAtEndInDLL(70)
+	dll.insertAtEnd(50)
+	dll.insertAtEnd(60)
+	dll.insertAtEnd(70)
 
 	dll.print()
 
-	dll.deleteFromDLL(10)
+	dll.delete(10)
 	dll.print()
-	dll.deleteFromDLL(70)
+	dll.delete(70)
 	dll.print()
 
-	count := dll.countOfNodeInDLL()
+	count := dll.countOfNode()
 	fmt.Println("Count of node in the DLL:", count)
 
-	negativedata := dll.checkNegativeDataInDLL()
+	negativedata := dll.checkNegativeData()
 	fmt.Println("DLL has the negative data:", negativedata)
 
-	sumofalldata := dll.sumOfAllDataInDLL()
+	sumofalldata := dll.sumOfAllData()
 	fmt.Println("Sum of the all data in the DLL:", sumofalldata)
 
-	sumofoddindexes := dll.sumAtOddIndexesInDLL()
+	sumofoddindexes := dll.sumAtOddIndexes()
 	fmt.Println("Sum of odd index nodes in DLL:", sumofoddindexes)
 }
