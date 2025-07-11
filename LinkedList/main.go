@@ -17,13 +17,13 @@ func NewNode(data int) *Node {
 	}
 }
 
-func (sll *SLL) insertAtBeginInSLL(data int) {
+func (sll *SLL) insertAtBegin(data int) {
 	newnode := NewNode(data)
 	newnode.next = sll.head
 	sll.head = newnode
 }
 
-func (sll *SLL) insertAtEndInSLL(data int) {
+func (sll *SLL) insertAtEnd(data int) {
 	newnode := NewNode(data)
 
 	if sll.head == nil {
@@ -37,7 +37,7 @@ func (sll *SLL) insertAtEndInSLL(data int) {
 	current.next = newnode
 }
 
-func (sll *SLL) deleteFromSLL(data int) {
+func (sll *SLL) delete(data int) {
 	if sll.head == nil {
 		fmt.Println("Datark LL:")
 		return
@@ -59,7 +59,7 @@ func (sll *SLL) deleteFromSLL(data int) {
 
 }
 
-func (sll *SLL) countOfNodeInSLL() int {
+func (sll *SLL) countOfNode() int {
 	var count int
 
 	current := sll.head
@@ -70,7 +70,7 @@ func (sll *SLL) countOfNodeInSLL() int {
 	return count
 }
 
-func (sll *SLL) checkNegativeDataInSLL() bool {
+func (sll *SLL) checkNegativeData() bool {
 	var negativedata bool
 
 	current := sll.head
@@ -84,7 +84,7 @@ func (sll *SLL) checkNegativeDataInSLL() bool {
 	return negativedata
 }
 
-func (sll *SLL) sumOfAllDataInSLL() int {
+func (sll *SLL) sumOfAllData() int {
 	var sum int
 
 	current := sll.head
@@ -95,20 +95,13 @@ func (sll *SLL) sumOfAllDataInSLL() int {
 	return sum
 }
 
-func (sll *SLL) sumAtOddIndexesInSLL() int {
+func (sll *SLL) sumAtOddIndexes() int {
 	var sum int
-	var arrofodd []int
 
 	current := sll.head
-	for current != nil {
-		arrofodd = append(arrofodd, current.data)
-		current = current.next
-	}
-
-	for i, val := range arrofodd {
-		if i%2 == 1 {
-			sum += val
-		}
+	for current != nil && current.next != nil {
+		sum += current.next.data
+		current = current.next.next
 	}
 	return sum
 }
@@ -124,27 +117,27 @@ func (sll *SLL) print() {
 
 func main() {
 	ll := SLL{}
-	ll.insertAtBeginInSLL(10)
-	ll.insertAtBeginInSLL(15)
-	ll.insertAtBeginInSLL(20)
+	ll.insertAtBegin(10)
+	ll.insertAtBegin(15)
+	ll.insertAtBegin(20)
 
-	ll.insertAtEndInSLL(16)
-	ll.insertAtEndInSLL(15)
-	ll.insertAtEndInSLL(10)
+	ll.insertAtEnd(16)
+	ll.insertAtEnd(15)
+	ll.insertAtEnd(10)
 	ll.print()
 
-	ll.deleteFromSLL(55)
+	ll.delete(55)
 	ll.print()
 
-	count := ll.countOfNodeInSLL()
+	count := ll.countOfNode()
 	fmt.Println("Count of node in the SLL:", count)
 
-	negativedata := ll.checkNegativeDataInSLL()
+	negativedata := ll.checkNegativeData()
 	fmt.Println("SLL has the negative data:", negativedata)
 
-	sumofalldata := ll.sumOfAllDataInSLL()
+	sumofalldata := ll.sumOfAllData()
 	fmt.Println("Sum of the all data in the SLL:", sumofalldata)
 
-	sumofoddindexes := ll.sumAtOddIndexesInSLL()
+	sumofoddindexes := ll.sumAtOddIndexes()
 	fmt.Println("Sum of odd index nodes in SLL:", sumofoddindexes)
 }
