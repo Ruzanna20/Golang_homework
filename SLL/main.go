@@ -119,15 +119,26 @@ func (sll *SLL) Print() {
 }
 
 func createSLL(sll interfaces.LL) {
+	// Insert elements at the begin
 	sll.InsertAtBegin(10)
 	sll.InsertAtBegin(15)
 	sll.InsertAtBegin(20)
+
+	// Insert elements at the end
 	sll.InsertAtEnd(16)
 	sll.InsertAtEnd(15)
 	sll.InsertAtEnd(10)
+
+	// Print list
 	sll.Print()
+
+	// Delete elements 
 	sll.Delete(55)
+
+	// Print list after deletion
 	sll.Print()
+
+	// Getter methods
 	sll.CountOfNode()
 	sll.CheckNegativeData()
 	sll.SumOfAllData()
