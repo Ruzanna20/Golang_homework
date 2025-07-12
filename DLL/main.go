@@ -144,17 +144,27 @@ func (dll *DLL) Print() {
 }
 
 func createDLL(dll interfaces.LL) {
+	// Insert elements at the begin
 	dll.InsertAtBegin(10)
 	dll.InsertAtBegin(20)
 	dll.InsertAtBegin(30)
+
+	// Insert elements at the end
 	dll.InsertAtEnd(50)
 	dll.InsertAtEnd(60)
 	dll.InsertAtEnd(70)
+
+	// Print list
 	dll.Print()
+
+	// Delete elements 
 	dll.Delete(10)
-	dll.Print()
 	dll.Delete(70)
+
+	// Print list after deletion
 	dll.Print()
+
+	// Getter methods
 	dll.CountOfNode()
 	dll.CheckNegativeData()
 	dll.SumOfAllData()
