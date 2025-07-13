@@ -43,39 +43,44 @@ func (sll *SLL) InsertAtEnd(data int) {
 func (sll *SLL) Delete(data int) {
 	if sll.head == nil {
 		fmt.Println("Datark LL:")
-		return
+		return 
 	}
 
 	if sll.head.data == data {
 		sll.head = sll.head.next
-		return
+		return 
 	}
 
 	current := sll.head
 	for current.next != nil {
 		if current.next.data == data {
 			current.next = current.next.next
-			return
+			return 
 		}
 		current = current.next
 	}
-
 }
 
-func (sll *SLL) CountOfNode() {
-	var count int
+func (sll *SLL) CountOfNode() int {
+	if sll.head == nil {
+		return 0
+	}
 
+	var count int
 	current := sll.head
 	for current != nil {
 		count++
 		current = current.next
 	}
-	fmt.Println("Count of node in the SLL:", count)
+	return count
 }
 
-func (sll *SLL) CheckNegativeData() {
-	var negativedata bool
+func (sll *SLL) CheckNegativeData() bool {
+	if sll.head == nil {
+		return false
+	}
 
+	var negativedata bool
 	current := sll.head
 	for current != nil {
 		if current.data < 0 {
@@ -84,29 +89,35 @@ func (sll *SLL) CheckNegativeData() {
 		}
 		current = current.next
 	}
-	fmt.Println("SLL has the negative data:", negativedata)
+	return negativedata
 }
 
-func (sll *SLL) SumOfAllData() {
-	var sum int
+func (sll *SLL) SumOfAllData() int {
+	if sll.head == nil {
+		return 0
+	}
 
+	var sum int
 	current := sll.head
 	for current != nil {
 		sum += current.data
 		current = current.next
 	}
-	fmt.Println("Sum of the all data in the SLL:", sum)
+	return sum
 }
 
-func (sll *SLL) SumAtOddIndexes() {
-	var sum int
+func (sll *SLL) SumAtOddIndexes() int {
+	if sll.head == nil {
+		return 0
+	}
 
+	var sum int
 	current := sll.head
 	for current != nil && current.next != nil {
 		sum += current.next.data
 		current = current.next.next
 	}
-	fmt.Println("Sum of odd index nodes in SLL:", sum)
+	return sum
 }
 
 func (sll *SLL) Print() {
@@ -137,15 +148,16 @@ func createSLL(sll interfaces.LL) {
 
 	// Print list after deletion
 	sll.Print()
-
-	// Getter methods
-	sll.CountOfNode()
-	sll.CheckNegativeData()
-	sll.SumOfAllData()
-	sll.SumAtOddIndexes()
 }
 
 func main() {
 	sll := &SLL{}
 	createSLL(sll)
+
+	fmt.Println("Node count:", sll.CountOfNode())
+	fmt.Println("Has negative data:", sll.CheckNegativeData())
+	fmt.Println("Sum of all data:", sll.SumOfAllData())
+	fmt.Println("Sum at odd indexes:", sll.SumAtOddIndexes())
+
+
 }

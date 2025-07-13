@@ -56,7 +56,7 @@ func (dll *DLL) InsertAtEnd(data int) {
 func (dll *DLL) Delete(data int) {
 	if dll.head == nil {
 		fmt.Println("Datark DLL:")
-		return
+		return 
 	}
 
 	if dll.head.data == data {
@@ -67,7 +67,7 @@ func (dll *DLL) Delete(data int) {
 			dll.head = nil
 			dll.tail = nil
 		}
-		return
+		return 
 	}
 
 	current := dll.head
@@ -86,20 +86,26 @@ func (dll *DLL) Delete(data int) {
 	}
 }
 
-func (dll *DLL) CountOfNode() {
-	var count int
+func (dll *DLL) CountOfNode() int {
+	if dll.head == nil {
+		return 0
+	}
 
+	var count int
 	current := dll.head
 	for current != nil {
 		count++
 		current = current.next
 	}
-	fmt.Println("Count of node in the DLL:", count)
+	return count
 }
 
-func (dll *DLL) CheckNegativeData() {
-	var negativedata bool
+func (dll *DLL) CheckNegativeData() bool {
+	if dll.head == nil {
+		return false
+	}
 
+	var negativedata bool
 	current := dll.head
 	for current != nil {
 		if current.data < 0 {
@@ -108,29 +114,35 @@ func (dll *DLL) CheckNegativeData() {
 		}
 		current = current.next
 	}
-	fmt.Println("DLL has the negative data:", negativedata)
+	return negativedata
 }
 
-func (dll *DLL) SumOfAllData() {
-	var sum int
+func (dll *DLL) SumOfAllData() int {
+	if dll.head == nil {
+		return 0
+	}
 
+	var sum int
 	current := dll.head
 	for current != nil {
 		sum += current.data
 		current = current.next
 	}
-	fmt.Println("Sum of the all data in the DLL:", sum)
+	return sum
 }
 
-func (dll *DLL) SumAtOddIndexes() {
-	var sum int
+func (dll *DLL) SumAtOddIndexes() int {
+	if dll.head == nil {
+		return 0
+	}
 
+	var sum int
 	current := dll.head
 	for current != nil && current.next != nil {
 		sum += current.next.data
 		current = current.next.next
 	}
-	fmt.Println("Sum of odd index nodes in DLL:", sum)
+	return sum
 }
 
 func (dll *DLL) Print() {
@@ -163,15 +175,14 @@ func createDLL(dll interfaces.LL) {
 
 	// Print list after deletion
 	dll.Print()
-
-	// Getter methods
-	dll.CountOfNode()
-	dll.CheckNegativeData()
-	dll.SumOfAllData()
-	dll.SumAtOddIndexes()
 }
 
 func main() {
 	dll := &DLL{}
 	createDLL(dll)
+
+	fmt.Println("Count node of the DLL:", dll.CountOfNode())
+	fmt.Println("DLL has negative data:", dll.CheckNegativeData())
+	fmt.Println("Sum of node in DLL:", dll.SumOfAllData())
+	fmt.Println("Sum of odd nodes in DLL:", dll.SumAtOddIndexes())
 }

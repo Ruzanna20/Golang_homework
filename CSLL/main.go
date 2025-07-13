@@ -58,7 +58,7 @@ func (csll *CSLL) InsertAtEnd(data int) {
 func (csll *CSLL) Delete(data int) {
 	if csll.head == nil {
 		fmt.Println("Datark CSLL:")
-		return
+		return 
 	}
 
 	current := csll.head
@@ -72,13 +72,13 @@ func (csll *CSLL) Delete(data int) {
 			csll.head = csll.head.next
 			current.next = csll.head
 		}
-		return
+		return 
 	}
 
 	for current.next != csll.head {
 		if current.next.data == data {
 			current.next = current.next.next
-			return
+			return 
 		}
 		current = current.next
 	}
@@ -98,33 +98,29 @@ func (csll *CSLL) Print() {
 	fmt.Println(current.data, "-> (head)")
 }
 
-func (csll *CSLL) CountOfNode() {
-	var count int
-
+func (csll *CSLL) CountOfNode() int {
 	if csll.head == nil {
-		fmt.Println("Datark CSLL:")
-		return
+		return 0
 	}
 
+	count := 1
 	current := csll.head
 	for current.next != csll.head {
 		count++
 		current = current.next
 	}
-	fmt.Println("Count node of the CSLL:", count+1)
+	return count
 }
 
-func (csll *CSLL) CheckNegativeData() {
-	var negativedata bool
-
+func (csll *CSLL) CheckNegativeData() bool {
 	if csll.head == nil {
-		fmt.Println("Datark CSLL:")
+		return false
 	}
 
+	var negativedata bool
 	if csll.head.data < 0 {
 		negativedata = true
-		fmt.Println("CSLL has negative data:", negativedata)
-		return
+		return negativedata
 	}
 
 	current := csll.head.next
@@ -135,13 +131,12 @@ func (csll *CSLL) CheckNegativeData() {
 		}
 		current = current.next
 	}
-	fmt.Println("CSLL has negative data:", negativedata)
+	return negativedata
 }
 
-func (csll *CSLL) SumOfAllData() {
+func (csll *CSLL) SumOfAllData() int {
 	if csll.head == nil {
-		fmt.Println("Datark CSLL:")
-		return
+		return 0
 	}
 
 	var sum int
@@ -151,13 +146,12 @@ func (csll *CSLL) SumOfAllData() {
 		sum += current.data
 		current = current.next
 	}
-	fmt.Println("Sum of node in CSLL:", sum)
+	return sum
 }
 
-func (csll *CSLL) SumAtOddIndexes() {
+func (csll *CSLL) SumAtOddIndexes() int {
 	if csll.head == nil {
-		fmt.Println("Datark CSLL:")
-		return
+		return 0
 	}
 
 	var sum int
@@ -174,7 +168,7 @@ func (csll *CSLL) SumAtOddIndexes() {
 			break
 		}
 	}
-	fmt.Println("Sum of odd nodes in CSLL:", sum)
+	return sum
 }
 
 func (csll *CSLL) checkCycle() bool {
@@ -216,17 +210,16 @@ func createCSLL(csll interfaces.LL) {
 
 	// Print after deletion
 	csll.Print()
-
-	// Geter methods
-	csll.CountOfNode()
-	csll.CheckNegativeData()
-	csll.SumOfAllData()
-	csll.SumAtOddIndexes()
 }
 
 func main() {
 	csll := &CSLL{}
 	createCSLL(csll)
+
+	fmt.Println("Node count:", csll.CountOfNode())
+	fmt.Println("Has negative data:", csll.CheckNegativeData())
+	fmt.Println("Sum of all data:", csll.SumOfAllData())
+	fmt.Println("Sum at odd indexes:", csll.SumAtOddIndexes())
 
 	iscycle := csll.checkCycle()
 	fmt.Println("My list is Cycle:", iscycle)
