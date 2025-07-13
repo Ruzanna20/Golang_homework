@@ -216,10 +216,11 @@ func main() {
 	csll := &CSLL{}
 	createCSLL(csll)
 
-	fmt.Println("Node count:", csll.CountOfNode())
-	fmt.Println("Has negative data:", csll.CheckNegativeData())
-	fmt.Println("Sum of all data:", csll.SumOfAllData())
-	fmt.Println("Sum at odd indexes:", csll.SumAtOddIndexes())
+
+	fmt.Println("Count node of the CSLL:", csll.CountOfNode())
+	fmt.Println("CSLL has negative data:", csll.CheckNegativeData())
+	fmt.Println("Sum of node in CSLL:", csll.SumOfAllData())
+	fmt.Println("Sum of odd nodes in CSLL:", csll.SumAtOddIndexes())
 
 	iscycle := csll.checkCycle()
 	fmt.Println("My list is Cycle:", iscycle)
